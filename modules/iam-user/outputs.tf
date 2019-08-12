@@ -35,7 +35,7 @@ output "this_iam_access_key_id" {
     concat(
       aws_iam_access_key.this.*.id,
       aws_iam_access_key.this_no_pgp.*.id,
-      [""],
+      var.empty_list,
     ),
     0,
   )}"
@@ -62,7 +62,7 @@ output "this_iam_access_key_ses_smtp_password" {
     concat(
       aws_iam_access_key.this.*.ses_smtp_password,
       aws_iam_access_key.this_no_pgp.*.ses_smtp_password,
-      [""],
+      var.empty_list,
     ),
     0,
   )}"
@@ -74,7 +74,7 @@ output "this_iam_access_key_status" {
     concat(
       aws_iam_access_key.this.*.status,
       aws_iam_access_key.this_no_pgp.*.status,
-      [""],
+      var.empty_list,
     ),
     0,
   )}"
