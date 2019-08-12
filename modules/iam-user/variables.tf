@@ -28,7 +28,7 @@ variable "empty_list" {
 
 variable "path" {
   description = "Desired path for the IAM user"
-  type        = string
+  type        = "string"
   default     = "/"
 }
 
@@ -40,7 +40,7 @@ variable "force_destroy" {
 
 variable "pgp_key" {
   description = "Either a base-64 encoded PGP public key, or a keybase username in the form keybase:username. Used to encrypt password and access key."
-  type        = string
+  type        = "string"
   default     = ""
 }
 
@@ -52,13 +52,13 @@ variable "password_reset_required" {
 
 variable "password_length" {
   description = "The length of the generated password"
-  type        = "number"
-  default     = 20
+ 
+  default     = "20"
 }
 
 variable "upload_iam_user_ssh_key" {
   description = "Whether to upload a public ssh key to the IAM user"
-  type        = "bool"
+
   default     = false
 }
 
@@ -82,6 +82,6 @@ variable "permissions_boundary" {
 
 variable "tags" {
   description = "A map of tags to add to all resources."
-  type        = map(string)
+  type        = "map(string)"
   default     = {}
 }
