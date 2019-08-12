@@ -23,7 +23,7 @@ variable "name" {
 variable "empty_list" {
   description = "The length of the generated password"
   type        = "list"
-  default = []
+  default = [""]
 }
 
 variable "path" {
