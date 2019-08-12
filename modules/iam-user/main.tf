@@ -1,5 +1,5 @@
 resource "aws_iam_user" "this" {
-  count = "${var.create_user ? 1 : 0}"
+  count = "${var.create_user == true ? 1 : 0}"
 
   name                 = "${var.name}"
   path                 = "${var.path}"
@@ -9,7 +9,7 @@ resource "aws_iam_user" "this" {
 }
 
 resource "aws_iam_user_login_profile" "this" {
-  count = "${var.create_user * var.create_iam_user_login_profile}"
+  count = "${max(var.create_user == true ? 1 : 0, var.create_iam_user_login_profile == true ? 1 : 0)}"
 
   user                    = "${aws_iam_user.this.name}"
   pgp_key                 = "${var.pgp_key}"
