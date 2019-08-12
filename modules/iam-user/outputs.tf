@@ -131,14 +131,14 @@ EOF
 
 output "this_iam_user_ssh_key_ssh_public_key_id" {
 description = "The unique identifier for the SSH public key"
-value = element(
+value = "${element(
 concat(aws_iam_user_ssh_key.this.*.ssh_public_key_id, [""]),
 0,
-)
+)}
 }
 
 output "this_iam_user_ssh_key_fingerprint" {
 description = "The MD5 message digest of the SSH public key"
-value       = element(concat(aws_iam_user_ssh_key.this.*.fingerprint, [""]), 0)
+value       = "${element(concat(aws_iam_user_ssh_key.this.*.fingerprint, [""]), 0)}
 }
 
