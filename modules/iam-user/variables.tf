@@ -20,6 +20,11 @@ variable "name" {
   description = "Desired name for the IAM user"
   type        = string
 }
+variable "empty_list" {
+  description = "The length of the generated password"
+  type        = list
+  default = []
+}
 
 variable "path" {
   description = "Desired path for the IAM user"
