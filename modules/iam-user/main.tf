@@ -18,19 +18,19 @@ resource "aws_iam_user_login_profile" "this" {
 }
 
 resource "aws_iam_access_key" "this" {
-  count = "${var.create_user * var.create_iam_access_key * var.pgp_key}"
+  count = "1"
   user    = "${aws_iam_user.this.name}"
   pgp_key = "${var.pgp_key}"
 }
 
 resource "aws_iam_access_key" "this_no_pgp" {
-  count = "${var.create_user * var.create_iam_access_key * var.pgp_key}"
+  count = "0"
 
   user = "${aws_iam_user.this.name}"
 }
 
 resource "aws_iam_user_ssh_key" "this" {
-  count = "${var.create_user * var.upload_iam_user_ssh_key}"
+  count = "0"
 
   username   = "${aws_iam_user.this.name}"
   encoding   = "${var.ssh_key_encoding}"
