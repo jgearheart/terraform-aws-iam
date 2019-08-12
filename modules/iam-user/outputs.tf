@@ -10,7 +10,7 @@ output "this_iam_user_arn" {
 
 output "this_iam_user_unique_id" {
   description = "The unique ID assigned by AWS"
-  value       = "${element(concat(aws_iam_user.this.*.unique_id, [""]), 0)"
+  value       = "${element(concat(aws_iam_user.this.*.unique_id, [""]), 0)}"
 }
 
 output "this_iam_user_login_profile_key_fingerprint" {
