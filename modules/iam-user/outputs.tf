@@ -1,22 +1,22 @@
 output "this_iam_user_name" {
   description = "The user's name"
-  value       = "${element(concat(aws_iam_user.this.*.name, [""]), 0)}"
+  value       = "${element(concat(aws_iam_user.this.*.name, var.empty_list), 0)}"
 }
 
 output "this_iam_user_arn" {
   description = "The ARN assigned by AWS for this user"
-  value       = "${element(concat(aws_iam_user.this.*.arn, [""]), 0)}"
+  value       = "${element(concat(aws_iam_user.this.*.arn, var.empty_list), 0)}"
 }
 
 output "this_iam_user_unique_id" {
   description = "The unique ID assigned by AWS"
-  value       = "${element(concat(aws_iam_user.this.*.unique_id, [""]), 0)}"
+  value       = "${element(concat(aws_iam_user.this.*.unique_id, var.empty_list), 0)}"
 }
 
 output "this_iam_user_login_profile_key_fingerprint" {
   description = "The fingerprint of the PGP key used to encrypt the password"
   value = "${element(
-    concat(aws_iam_user_login_profile.this.*.key_fingerprint, [""]),
+    concat(aws_iam_user_login_profile.this.*.key_fingerprint, var.empty_list),
     0,
   )}"
 }
@@ -24,7 +24,7 @@ output "this_iam_user_login_profile_key_fingerprint" {
 output "this_iam_user_login_profile_encrypted_password" {
   description = "The encrypted password, base64 encoded"
   value = "${element(
-    concat(aws_iam_user_login_profile.this.*.encrypted_password, [""]),
+    concat(aws_iam_user_login_profile.this.*.encrypted_password, var.empty_list),
     0,
   )}"
 }
@@ -43,17 +43,17 @@ output "this_iam_access_key_id" {
 
 output "this_iam_access_key_secret" {
   description = "The access key secret"
-    value       = "${element(concat(aws_iam_access_key.this_no_pgp.*.secret, [""]), 0)}"
+    value       = "${element(concat(aws_iam_access_key.this_no_pgp.*.secret, var.empty_list), 0)}"
 }
 
 output "this_iam_access_key_key_fingerprint" {
   description = "The fingerprint of the PGP key used to encrypt the secret"
-  value       = "${element(concat(aws_iam_access_key.this.*.key_fingerprint, [""]), 0)}"
+  value       = "${element(concat(aws_iam_access_key.this.*.key_fingerprint, var.empty_list), 0)}"
 }
 
 output "this_iam_access_key_encrypted_secret" {
   description = "The encrypted secret, base64 encoded"
-    value       = "${element(concat(aws_iam_access_key.this.*.encrypted_secret, [""]), 0)}"
+    value       = "${element(concat(aws_iam_access_key.this.*.encrypted_secret, var.empty_list), 0)}"
 }
 
 output "this_iam_access_key_ses_smtp_password" {
@@ -88,7 +88,7 @@ output "pgp_key" {
 output "keybase_password_decrypt_command" {
   value = <<EOF
 echo "${element(
-concat(aws_iam_user_login_profile.this.*.encrypted_password, [""]),
+concat(aws_iam_user_login_profile.this.*.encrypted_password, var.empty_list),
 0,
 )}" | base64 --decode | keybase pgp decrypt
 EOF
@@ -102,7 +102,7 @@ Version: Keybase OpenPGP v2.0.76
 Comment: https://keybase.io/crypto
 
 ${element(
-concat(aws_iam_user_login_profile.this.*.encrypted_password, [""]),
+concat(aws_iam_user_login_profile.this.*.encrypted_password, var.empty_list),
 0,
 )}
 -----END PGP MESSAGE-----
@@ -112,7 +112,7 @@ EOF
 
         output "keybase_secret_key_decrypt_command" {
           value = <<EOF
-echo "${element(concat(aws_iam_access_key.this.*.encrypted_secret, [""]), 0)}" | base64 --decode | keybase pgp decrypt
+echo "${element(concat(aws_iam_access_key.this.*.encrypted_secret, var.empty_list), 0)}" | base64 --decode | keybase pgp decrypt
 EOF
 
         }
@@ -123,7 +123,7 @@ EOF
 Version: Keybase OpenPGP v2.0.76
 Comment: https://keybase.io/crypto
 
-${element(concat(aws_iam_access_key.this.*.encrypted_secret, [""]), 0)}
+${element(concat(aws_iam_access_key.this.*.encrypted_secret, var.empty_list), 0)}
 -----END PGP MESSAGE-----
 EOF
 
@@ -132,13 +132,13 @@ EOF
 output "this_iam_user_ssh_key_ssh_public_key_id" {
 description = "The unique identifier for the SSH public key"
 value = "${element(
-concat(aws_iam_user_ssh_key.this.*.ssh_public_key_id, [""]),
+concat(aws_iam_user_ssh_key.this.*.ssh_public_key_id, var.empty_list),
 0,
 )}"
 }
 
 output "this_iam_user_ssh_key_fingerprint" {
 description = "The MD5 message digest of the SSH public key"
-value       = "${element(concat(aws_iam_user_ssh_key.this.*.fingerprint, [""]), 0)}"
+value       = "${element(concat(aws_iam_user_ssh_key.this.*.fingerprint, var.empty_list), 0)}"
 }
 
