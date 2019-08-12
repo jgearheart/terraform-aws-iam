@@ -24,7 +24,7 @@ resource "aws_iam_access_key" "this" {
 }
 
 resource "aws_iam_access_key" "this_no_pgp" {
-  count = ${var.create_user * var.create_iam_access_key * var.pgp_key}"
+  count = "${var.create_user * var.create_iam_access_key * var.pgp_key}"
 
   user = "${aws_iam_user.this[0].name}"
 }
